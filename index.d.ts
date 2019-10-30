@@ -1,4 +1,4 @@
-declare module 'aliakseidouhal_react-native-touch-id' {
+declare module '@aliakseidouhal/react-native-touch-id' {
     /**
      * The supported biometry type
      */
