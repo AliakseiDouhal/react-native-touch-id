@@ -25,6 +25,7 @@ public class FingerprintAuthModule extends ReactContextBaseJavaModule implements
     private boolean isAppActive;
 
     public static boolean inProgress = false;
+    public static boolean isModalShow = false;
 
     public FingerprintAuthModule(final ReactApplicationContext reactContext) {
         super(reactContext);
@@ -76,9 +77,9 @@ public class FingerprintAuthModule extends ReactContextBaseJavaModule implements
     public void authenticate(final String reason, final ReadableMap authConfig, final Callback reactErrorCallback, final Callback reactSuccessCallback) {
         final Activity activity = getCurrentActivity();
 
-        if (inProgress && fingerprintDialog != null && activity != null) {
+        if (!isModalShow && inProgress && fingerprintDialog != null && activity != null) {
           fingerprintDialog.show(activity.getFragmentManager(), FRAGMENT_TAG);
-
+          isModalShow = true;
           return;
         }
 
@@ -120,6 +121,7 @@ public class FingerprintAuthModule extends ReactContextBaseJavaModule implements
         }
 
         fingerprintDialog.show(activity.getFragmentManager(), FRAGMENT_TAG);
+        isModalShow = true;
     }
 
     private int isFingerprintAuthAvailable() {
