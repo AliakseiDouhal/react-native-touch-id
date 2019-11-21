@@ -163,10 +163,12 @@ public class FingerprintAuthModule extends ReactContextBaseJavaModule implements
     @Override
     public void onHostPause() {
         isAppActive = false;
+        isModalShow = false;
     }
 
     @Override
     public void onHostDestroy() {
         isAppActive = false;
+        isModalShow = false;
     }
 }
